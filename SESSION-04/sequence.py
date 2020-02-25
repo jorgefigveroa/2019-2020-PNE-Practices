@@ -10,8 +10,9 @@ del file[0]
 new_file = file
 
 total_length = 0
+
 for element in new_file:
     length = len(element)
     total_length = total_length + length
 
-print("The total length of", FILENAME, "is: ", total_length)
+print("The total length of", FILENAME ,"is: ",total_length)
