@@ -14,4 +14,4 @@ for element in new_file:
     length = len(element)
     total_length = total_length + length
 
-print("The total length of", FILENAME, "is: ",total_length)
+print("The total length of", FILENAME, "is: ", total_length)
