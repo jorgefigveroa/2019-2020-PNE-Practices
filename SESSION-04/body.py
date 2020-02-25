@@ -6,4 +6,7 @@ file_contents = Path(FILENAME).read_text()
 
 listcontents = file_contents.split("\n")
 
-print("First line of the ", FILENAME, " file is: \n", listcontents[0])
+del listcontents[0]
+
+for element in listcontents:
+    print(element)
