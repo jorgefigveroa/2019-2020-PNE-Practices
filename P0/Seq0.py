@@ -32,8 +32,10 @@ def seq_count_base(seq, base):
 
 def count(seq):
     listbases = ["A", "C", "T", "G"]
-    listnumbers = [seq_count_base(seq, "A"), seq_count_base(seq, "C"), seq_count_base(seq, "T"),
-                   seq_count_base(seq, "G")]
+    listnumbers = []
+    for base in listbases:
+        a = seq_count_base(seq,base)
+        listnumbers.append(a)
     dictionary = dict(zip(listbases, listnumbers))
     return dictionary
 
