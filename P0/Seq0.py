@@ -6,7 +6,7 @@ def seq_ping():
 
 
 def seq_read_fasta(filename):
-    contents = Path(filename).read_text().split("\n")
+    contents = Path(filename).read_text().split("\n")[1:]
     seq = "".join(contents)
     return seq
 
@@ -22,6 +22,12 @@ def seq_count_base(seq, base):
         if element == base:
             count1 = count1 + 1
     return count1
+
+
+#def seq_read_fasta(filename):
+    #for letter in filename:
+        #if letter == "A" or "C" or "T" or "G":
+            #return letter  (ANOTHER WAY TO DO THE SEQ_READ_FASTA FUNCTION)
 
 
 def count(seq):
