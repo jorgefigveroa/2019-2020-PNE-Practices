@@ -46,8 +46,9 @@ def seq_reverse(seq):
 
 
 def seq_complement(seq):
-    dict_complements = {"A": "T", "C": "G", "T": "A", "G": "C"}
-    complement = ""
-    for element in seq:
-        complement = complement + dict_complements[element]
-    return complement
+    complements = {"A": "T", "C": "G", "G": "C", "T": "A"}
+    new_list = ""
+    for n in seq:
+        a = complement_dictionary[n]
+        new_list = new_list + a
+    return new_list
