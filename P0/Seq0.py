@@ -24,17 +24,17 @@ def seq_count_base(seq, base):
     return count1
 
 
-#def seq_read_fasta(filename):
-    #for letter in filename:
-        #if letter == "A" or "C" or "T" or "G":
-            #return letter  (ANOTHER WAY TO DO THE SEQ_READ_FASTA FUNCTION)
+# def seq_read_fasta(filename):
+# for letter in filename:
+# if letter == "A" or "C" or "T" or "G":
+# return letter  (ANOTHER WAY TO DO THE SEQ_READ_FASTA FUNCTION)
 
 
 def count(seq):
     listbases = ["A", "C", "T", "G"]
     listnumbers = []
     for base in listbases:
-        a = seq_count_base(seq,base)
+        a = seq_count_base(seq, base)
         listnumbers.append(a)
     dictionary = dict(zip(listbases, listnumbers))
     return dictionary
@@ -43,3 +43,11 @@ def count(seq):
 def seq_reverse(seq):
     reverse = seq[::-1]
     return reverse
+
+
+def seq_complement(seq):
+    dict_complements = {"A": "T", "C": "G", "T": "A", "G": "C"}
+    complement = ""
+    for element in seq:
+        complement = complement + dict_complements[element]
+    return complement
