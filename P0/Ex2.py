@@ -1,6 +1,9 @@
-def seq_read_fasta(filename):
-    for letter in filename:
-        if letter == "A" or "C" or "T" or "G":
-            return letter
+import Seq0
 
-print(seq_read_fasta(Homo_sapiens_RNU6_1110P_sequence.fa))
+FOLDER = "../SESSION-04/"
+FILENAME = "U5.txt"
+
+body = Seq0.seq_read_fasta(FOLDER + FILENAME)[0:20]
+
+print("DNA file:", FILENAME)
+print("The first 20 DNA bases are:\n", body)
