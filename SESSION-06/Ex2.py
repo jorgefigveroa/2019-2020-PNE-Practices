@@ -20,7 +20,7 @@ class Seq:
 
 def print_seqs(seq_lists):
     for element in seq_lists:
-        print(f"Sequence {seq_lists.index(element)}: (Length: {element.len}) {element}")
+        print(f"Sequence {seq_lists.index(element)}: (Length: {element.len()}) {element}")
 
 
 seq_list = [Seq("ACT"), Seq("GATA"), Seq("CAGATA")]
