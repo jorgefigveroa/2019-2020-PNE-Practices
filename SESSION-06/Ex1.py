@@ -1,20 +1,18 @@
 class Seq:
-    """A class for representing sequences"""
 
     def __init__(self, strbases):
         self.strbases = strbases
-        if "A" and "C" and "T" and "G" in strbases:
-            print("New sequence created!")
-        else:
-            print("ERROR!!")
+        bases = ["A", "C", "T", "G"]
+        for b in strbases:
+            if b not in bases:
+                print("ERROR!!")
+                self.strbases = "ERROR"
+                return
+        print("New sequence created!")
+        self.strbases = strbases
 
-    @property
     def __str__(self):
-        a = self.strbases
-        if "A" and "C" and "T" and "G" in a:
-            return a
-        else:
-            return "ERROR"
+        return self.strbases
 
 
 s1 = Seq("ACCTGC")

@@ -2,7 +2,6 @@ class Seq:
     """A class for representing sequences"""
 
     def __init__(self, strbases):
-
         # Initialize the sequence with the value
         # passed as argument when creating the object
         self.strbases = strbases
@@ -31,6 +30,8 @@ print(f"Sequence 2: {s2}")
 print(f"  Length: {s2.len()}")
 
 print("----------------SEPARATOR------------------------")
+
+
 # --- INHERITANCE ---------------------
 
 class Gene(Seq):
@@ -38,8 +39,8 @@ class Gene(Seq):
        All the objects of class Gene will inheritate
        the methods from the Seq class
     """
-    def __init__(self, strbases, name=""):
 
+    def __init__(self, strbases, name=""):
         # -- Call first the Seq initilizer and then the
         # -- Gene init method
         super().__init__(strbases)
@@ -49,6 +50,7 @@ class Gene(Seq):
     def __str__(self):
         """Print the Gene name along with the sequence"""
         return self.name + "-" + self.strbases
+
 
 # --- Main program
 s1 = Seq("AGTACACTGGT")
