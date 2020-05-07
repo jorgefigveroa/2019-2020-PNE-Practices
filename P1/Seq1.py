@@ -17,4 +17,32 @@ class Seq:
         return self.strbases
 
     def len(self):
-        return len(self.strbases)
+        if self.strbases == "NULL":
+            return 0
+        if self.strbases == "ERROR":
+            return 0
+        else:
+            return len(self.strbases)
+
+    def count_base(self, base):
+        if self.strbases == "NULL":
+            return "0"
+        if self.strbases == "ERROR":
+            return "0"
+        else:
+            return self.strbases.count(base)
+    @property
+    def count(self):
+        listbases = ["A", "C", "T", "G"]
+        listzeros = [0, 0, 0, 0]
+        zerodict = dict(zip(listbases, listzeros))
+        if self.strbases == "NULL":
+            return zerodict
+        if self.strbases == "ERROR":
+            return zerodict
+        else:
+            list2 = {"A": self.count_base("A"), "C": self.count_base("C"),
+                     "T": self.count_base("T"), "G": self.count_base("G") }
+            return list2
+
+    def reverse(self):
