@@ -11,6 +11,6 @@ s3 = Seq("Invalid sequence")
 
 listS = [s1, s2, s3]
 
-for number,s in enumerate(listS):
-    print(f"Sequence {number}: (Length: {s.len()}) {s}"
+for number, s in enumerate(listS):
+    print(f"Sequence {number}: (Length: {s.len()}) {s}\n"
           f"Bases: {s.count}")

@@ -1,6 +1,6 @@
 from Seq1 import Seq
 
-print("-----|Practice 1, Exercise 7|------")
+print("-----|Practice 1, Exercise 8|------")
 
 # -- Creating a Null sequence
 s1 = Seq()
@@ -14,4 +14,5 @@ listS = [s1, s2, s3]
 for number, s in enumerate(listS):
     print(f"Sequence {number}: (Length: {s.len()}) {s}\n"
           f"Bases: {s.count}\n"
-          f"Rev:{s.reverse}")
+          f"Rev:{s.reverse}\n"
+          f"Comp:{s.complement}")
