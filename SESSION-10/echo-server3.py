@@ -1,6 +1,12 @@
+# -- This is an example of the output that you should see on the Server's console.
+# -- In this example 5 clients have been connected to the server
+
 import socket
+import termcolor
 
 # -- Step 1: create the socket
+
+
 ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # -- Optional: This is for avoiding the problem of Port already in use
@@ -8,6 +14,7 @@ ls.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 # Configure the Server's IP and PORT
 PORT = 8080
+
 IP = "192.168.1.42"
 
 # -- Step 1: create the socket
@@ -23,6 +30,8 @@ ls.bind((IP, PORT))
 ls.listen()
 
 print("The server is configured!")
+connections = 0
+listclients = []
 
 while True:
     # -- Waits for a client to connect
@@ -34,6 +43,9 @@ while True:
     # -- Server stopped manually
     except KeyboardInterrupt:
         print("Server stopped by the user")
+        print("The following clients have connected to the server:")
+        for i, k in enumerate(listclients):
+            print(f"CLIENT {i}: {k}")
 
         # -- Close the listenning socket
         ls.close()
@@ -43,8 +55,11 @@ while True:
 
     # -- Execute this part if there are no errors
     else:
+        connections = connections + 1
 
-        print("A client has connected to the server!")
+        listclients.append(client_ip_port)
+
+        print(f"CONNECTION {connections}: Client IP,PORT: {client_ip_port}")
 
         # -- Read the message from the client
         # -- The received message is in raw bytes
@@ -55,10 +70,11 @@ while True:
         msg = msg_raw.decode()
 
         # -- Print the received message
-        print(f"Message received: {msg}")
+        print("Message received: ", end="")
+        termcolor.cprint(msg, "green")
 
         # -- Send a response message to the client
-        response = "HELLO. I am the Happy Server :-)\n"
+        response = msg
 
         # -- The message has to be encoded into bytes
         cs.send(response.encode())

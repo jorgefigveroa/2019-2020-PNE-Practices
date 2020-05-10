@@ -1,4 +1,9 @@
+# -- Once the server is running, it will print the client's messages in the
+# -- server's console in green color. If we send 3 messages using the nc command,
+# -- this is what we will on the linux's console:
+
 import socket
+import termcolor
 
 # -- Step 1: create the socket
 ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -55,10 +60,11 @@ while True:
         msg = msg_raw.decode()
 
         # -- Print the received message
-        print(f"Message received: {msg}")
+        print("Message received: ", end="")
+        termcolor.cprint(msg, "green")
 
         # -- Send a response message to the client
-        response = "HELLO. I am the Happy Server :-)\n"
+        response = msg
 
         # -- The message has to be encoded into bytes
         cs.send(response.encode())
