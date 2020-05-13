@@ -16,6 +16,7 @@ def fibon(n):
 def fibonacci(n):
     fibo1 = 0
     fibo2 = 1
+    count = 0
     for i in range(0, n-1):
         count = fibo1 + fibo2
         fibo1 = fibo2

@@ -25,6 +25,7 @@ def info(req):
         body1 = Path("ERROR.html").read_text()
     return body1
 
+
 def process_client(s):
     # -- Receive the request message
     req_raw = s.recv(2000)
