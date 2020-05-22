@@ -75,22 +75,22 @@ def splitting(word, string, number):
 # -- The html file that will be imported to the client
 def showing_listSpecies(cut_listSpecies, total_listSpecies):
     contents = f"""
-                    <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset= "utf-8">
-                        <title> LIST OF SPECIES </title>
-                    <head> 
-                    <body style="background-color: lightgreen;">
-                    <h1>DATA ASKED:</h1>
-                     <h4> Warning: the limit you introduce must be an integer number between 1
-                            and the total number of species.</h4>
-                    <p> The total number of species in the ensembl is: {len(total_listSpecies)} </p>
-                    <p> The limit you have selected is: {len(cut_listSpecies)} </p>
-                    <p>The list of the species is: <br> {stringlist(cut_listSpecies)}</p>
-                    <a href="http://127.0.0.1:8080/">[Main page]</a>
-                    </body>
-                    </html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> LIST OF SPECIES </title>
+    <head> 
+    <body style="background-color: lightgreen;">
+        <h1>DATA ASKED:</h1>
+        <h4> Warning: the limit you introduce must be an integer number between 1
+            and the total number of species.</h4>
+        <p> The total number of species in the ensembl is: {len(total_listSpecies)} </p>
+        <p> The limit you have selected is: {len(cut_listSpecies)} </p>
+        <p>The list of the species is: <br> {stringlist(cut_listSpecies)}</p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
                     """
     return contents
 
@@ -105,19 +105,19 @@ def karyotype(ENDPOINT):
 # -- The html file that will be imported to the client
 def showing_karyotype(karyolist):
     contents = f"""
-                    <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset= "utf-8">
-                        <title> KARYOTYPE </title>
-                    <head> 
-                    <body style="background-color: lightblue;">
-                    <h1>DATA ASKED:</h1>
-                     <h4> Warning: the species you introduce must be in the ensembl database.</h4>
-                    <p> The names of the chromosomes are: <br> {stringlist(karyolist)} </p>
-                    <a href="http://127.0.0.1:8080/">[Main page]</a>
-                    </body>
-                    </html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> KARYOTYPE </title>
+    <head> 
+    <body style="background-color: lightblue;">
+        <h1>DATA ASKED:</h1>
+        <h4> Warning: the species you introduce must be in the ensembl database.</h4>
+        <p> The names of the chromosomes are: <br> {stringlist(karyolist)} </p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
                     """
     return contents
 
@@ -139,20 +139,20 @@ def chromosome_length(ENDPOINT, number):
 
 def showing_chromolength(chromo):
     contents = f""" 
-                    <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset= "utf-8">
-                        <title> CHROMOSOME LENGTH </title>
-                    <head> 
-                    <body style="background-color: #FFA07A;">
-                    <h1>DATA ASKED:</h1>
-                     <h4> Warning: the species you introduce must be in the ensembl database
-                        and the chromosome must also be in the database, else, an error will be shown</h4>
-                    <p> The length of the chromosome is: {chromo} </p>
-                    <a href="http://127.0.0.1:8080/">[Main page]</a>
-                    </body>
-                    </html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> CHROMOSOME LENGTH </title>
+    <head> 
+    <body style="background-color: #FFA07A;">
+        <h1>DATA ASKED:</h1>
+        <h4> Warning: the species you introduce must be in the ensembl database
+            and the chromosome must also be in the database, else, an error will be shown</h4>
+        <p> The length of the chromosome is: {chromo} </p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
                     """
     return contents
 
@@ -208,7 +208,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 contents = Path('Error.html').read_text()
                 content_type = 'text/html'
                 error_code = 404
-        except (ValueError, KeyError):
+        except (ValueError, KeyError, IndexError):
             contents = Path('Error.html').read_text()
             content_type = 'text/html'
             error_code = 404
