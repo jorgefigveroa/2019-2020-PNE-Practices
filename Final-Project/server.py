@@ -5,7 +5,7 @@ import termcolor
 from pathlib import Path
 import json
 
-# Define the Server's port
+# -- THE PORT
 PORT = 8080
 
 # -- This is for preventing the error: "Port already in use"
@@ -49,21 +49,27 @@ def connecting(ENDPOINT):
 def listSpecies(ENDPOINT):
     response = connecting(ENDPOINT)
     count = 0
-    listSpecies = []
+    list_Species = []
     for elements in response:
         for things in response[elements]:
             count = count + 1
-            listSpecies.append(things['display_name'])
-    ordered_list = sorted(listSpecies)
+            list_Species.append(things['display_name'])
+    ordered_list = sorted(list_Species)
     return ordered_list
 
 
-# -- We transform the list from before into a string, for it to import into html
-def stringlist(ordered_list):
+# -- We transform any list into a string, to import to html
+def stringlist(anylist):
     whole_list = ""
-    for element in ordered_list:
+    for element in anylist:
         whole_list = whole_list + " &nbsp;&nbsp;&nbsp;&nbsp; &#9679 " + element + "<br>"
     return whole_list
+
+
+def splitting(word, string, number):
+    splitted = word.split(string)
+    new_word = splitted[number]
+    return new_word
 
 
 # -- The html file that will be imported to the client
@@ -116,22 +122,55 @@ def showing_karyotype(karyolist):
     return contents
 
 
-# Class with our Handler. It is a called derived from BaseHTTPRequestHandler
-# It means that our class inheritates all his methods and properties
+#  --------------------- 3---------------------------------
+def chromosome_length(ENDPOINT, number):
+    response = connecting(ENDPOINT)
+    list_chromosome = []
+    for elements in response['top_level_region']:
+        if elements['coord_system'] == 'chromosome':
+            list_chromosome.append(elements)
+    for element in list_chromosome:
+        if element['name'] == number:
+            chromo = element['length']
+            return chromo
+
+
+# -- The html file that will be imported to the client
+
+def showing_chromolength(chromo):
+    contents = f""" 
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset= "utf-8">
+                        <title> CHROMOSOME LENGTH </title>
+                    <head> 
+                    <body style="background-color: #FFA07A;">
+                    <h1>DATA ASKED:</h1>
+                     <h4> Warning: the species you introduce must be in the ensembl database
+                        and the chromosome must also be in the database, else, an error will be shown</h4>
+                    <p> The length of the chromosome is: {chromo} </p>
+                    <a href="http://127.0.0.1:8080/">[Main page]</a>
+                    </body>
+                    </html>
+                    """
+    return contents
+
+
+# -- Class with our Handler. It is a called derived from BaseHTTPRequestHandler
+# --  Our class inherits all his methods and properties
 class TestHandler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
         """This method is called whenever the client invokes the GET method
         in the HTTP protocol request"""
-
-        # Print the request line
+        # -- THE REQUEST LINE
         termcolor.cprint(self.requestline, 'green')
 
-        # -- Parse the path
         # -- NOTE: self.path already contains the requested resource
         list_resource = self.path.split('?')
         resource = list_resource[0]
-        e = Exception
+
         try:
             if resource == "/":
                 # Read the file
@@ -150,18 +189,26 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 content_type = 'text/html'
                 error_code = 200
             elif resource == '/karyotype':
-                limit = self.path.split('species=')
-                species = limit[1]
+                species = splitting(self.path, 'specie=', 1)
                 ENDPOINT = "/info/assembly/" + species
                 data = karyotype(ENDPOINT)
                 contents = showing_karyotype(data)
+                content_type = 'text/html'
+                error_code = 200
+            elif resource == '/chromosomeLength':
+                complete = splitting(self.path, 'specie=', 1)
+                species = splitting(complete, "&chromo=", 0)
+                chromosome = splitting(complete, "&chromo=", 1)
+                ENDPOINT = "/info/assembly/" + species
+                data = chromosome_length(ENDPOINT, chromosome)
+                contents = showing_chromolength(data)
                 content_type = 'text/html'
                 error_code = 200
             else:
                 contents = Path('Error.html').read_text()
                 content_type = 'text/html'
                 error_code = 404
-        except e:
+        except (ValueError, KeyError):
             contents = Path('Error.html').read_text()
             content_type = 'text/html'
             error_code = 404

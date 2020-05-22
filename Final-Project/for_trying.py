@@ -2,7 +2,7 @@ import http.client
 import json
 
 SERVER = "rest.ensembl.org"
-ENDPOINT = "/info/assembly/human"
+ENDPOINT = "/info/assembly/mouse"
 PARAMS = "?content-type=application/json"
 URL = SERVER + ENDPOINT + PARAMS
 
@@ -34,4 +34,14 @@ data1 = r1.read().decode("utf-8")
 # -- CREATING A VARIABLE WITH THE DATA
 response = json.loads(data1)
 
-print(response['karyotype'])
+list_chromosome = []
+
+for elements in response['top_level_region']:
+    if elements['coord_system'] == 'chromosome':
+        list_chromosome.append(elements)
+
+for element in list_chromosome:
+    if element['name'] == '18':
+        length = element['length']
+        print(length)
+
