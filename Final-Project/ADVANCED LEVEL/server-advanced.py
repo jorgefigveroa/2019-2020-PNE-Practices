@@ -314,7 +314,6 @@ def HTMLdoc():
          """
     return doc
 
-
 # -- Class with our Handler. It is a called derived from BaseHTTPRequestHandler
 # --  Our class inherits all his methods and properties
 class TestHandler(http.server.BaseHTTPRequestHandler):
@@ -333,7 +332,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         else:
             link = self.path
             values = "0"
-
+        e = (ValueError, KeyError, IndexError, TypeError, SyntaxError)
         try:
             if resource == "/":
                 contents = Path('index-advanced.html').read_text()
@@ -411,21 +410,26 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             else:
                 contents = Path('Error-advanced.html').read_text()
-        except (ValueError, KeyError, IndexError, TypeError):
+        except (ValueError, KeyError, IndexError, TypeError,SyntaxError):
             contents = Path('Error-advanced.html').read_text()
 
         list_resources = ["/", "/listSpecies", "/karyotype", "/chromosomeLength",
                           "/geneSeq", "/geneInfo", "/geneCalc", "/geneList"]
 
         if resource in list_resources:
-            error_code = 200
-            if values == "1":
+            cont = Path('Error-advanced.html').read_text()
+            if contents == cont and values == "1":
+                error_code = 404
+                content_type = "text/html"
+            elif contents != cont and values == "1":
+                error_code = 200
                 content_type = "application/json"
             else:
                 content_type = "text/html"
+                error_code = 200
         else:
-            error_code = 404
             content_type = "text/html"
+            error_code = 404
 
         # Generating the response message
         self.send_response(error_code)  # -- Status line: OK!
