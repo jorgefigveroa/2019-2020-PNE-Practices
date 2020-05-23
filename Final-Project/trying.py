@@ -5,7 +5,7 @@ from Seq1 import Seq
 
 def connecting(ENDPOINT):
     SERVER = "rest.ensembl.org"
-    PARAMS = "?content-type=application/json"
+    PARAMS = "content-type=application/json"
     # -- CONNECTING
 
     connection = http.client.HTTPConnection(SERVER)
@@ -67,10 +67,30 @@ def calculations(whole_seq):
     return list0
 
 
-ENDPOINT1 = "/sequence/region/human/10:97319271:97319281"
-id = ID_function("FRAT1")
-print(connecting('/sequence/id/' + id))
+ENDPOINT1 = "/overlap/region/human/1:0-30000?feature=gene;"
 
 s = connecting(ENDPOINT1)
 
-print(s['seq'])
+def gene_dictionary(gene):
+    list1 = []
+    for dictionary in gene:
+        list1.append(dictionary['external_name'])
+    return list1
+
+print(gene_dictionary(s))
+
+
+def percentages(whole_seq):
+    listBases = ["A", "C", "T", "G"]
+    listPerc = []
+    s = Seq(whole_seq)
+    dictionarycount = s.count
+    length = s.len()
+    for key in dictionarycount:
+        average = (int(dictionarycount[key]) / length) * 100
+        average_rounded = round(average, 1)
+        listPerc.append(average_rounded)
+    percentage = dict(zip(listBases,listPerc))
+    return percentage
+
+print(percentages("AAAAAAACCCCCCCTTTTTTTTTGGGGGGG"))
