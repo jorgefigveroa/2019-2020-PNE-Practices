@@ -18,7 +18,7 @@ socketserver.TCPServer.allow_reuse_address = True
 # -- With function: connecting we can connect to the ensembl database server and obtain all the information we want
 def connecting(ENDPOINT):
     SERVER = "rest.ensembl.org"
-    PARAMS = "?content-type=application/json"
+    PARAMS = "content-type=application/json"
     # -- CONNECTING
 
     connection = http.client.HTTPConnection(SERVER)
@@ -84,8 +84,6 @@ def showing_listSpecies(cut_listSpecies, total_listSpecies):
     <head> 
     <body style="background-color: lightgreen;">
         <h1>DATA ASKED:</h1>
-        <h4> Warning: the limit you introduce must be an integer number between 1
-            and the total number of species.</h4>
         <p> The total number of species in the ensembl is: {len(total_listSpecies)} </p>
         <p> The limit you have selected is: {len(cut_listSpecies)} </p>
         <p>The list of the species is: <br> {stringlist(cut_listSpecies)}</p>
@@ -114,7 +112,6 @@ def showing_karyotype(karyolist):
     <head> 
     <body style="background-color: lightblue;">
         <h1>DATA ASKED:</h1>
-        <h4> Warning: the species you introduce must be in the ensembl database.</h4>
         <p> The names of the chromosomes are: <br> {stringlist(karyolist)} </p>
             <a href="http://127.0.0.1:8080/">[Main page]</a>
     </body>
@@ -148,8 +145,6 @@ def showing_chromolength(chromo):
     <head> 
     <body style="background-color: #FFA07A;">
         <h1>DATA ASKED:</h1>
-        <h4> Warning: the species you introduce must be in the ensembl database
-            and the chromosome must also be in the database, else, an error will be shown</h4>
         <p> The length of the chromosome is: {chromo} </p>
             <a href="http://127.0.0.1:8080/">[Main page]</a>
     </body>
@@ -161,7 +156,7 @@ def showing_chromolength(chromo):
 #  --------------------- 4---------------------------------
 def ID_function(INPUT):
     ENDPOINT1 = "/lookup/symbol/homo_sapiens/"
-    GENE = connecting(ENDPOINT1 + INPUT)
+    GENE = connecting(ENDPOINT1 + INPUT + "?")
     ID_gene = GENE['id']
     return ID_gene
 
@@ -169,7 +164,7 @@ def ID_function(INPUT):
 def sequence(INPUT):
     ID = ID_function(INPUT)
     ENDPOINT2 = "/sequence/id/"
-    sequence_dict = connecting(ENDPOINT2 + ID)
+    sequence_dict = connecting(ENDPOINT2 + ID + "?")
     seq = sequence_dict['seq']
     return seq
 
@@ -186,8 +181,6 @@ def showing_geneSeq(whole_sequence):
     <head> 
     <body style="background-color: #E0FFFF;">
         <h1>DATA ASKED:</h1>
-        <h4> Warning: the gene you introduce must be in the ensembl database
-            else, an error will be shown</h4>
         <p> The sequence is:  </p>
         <textarea readonly id="GENE" rows="10" cols="70">{whole_sequence} </textarea>
 <br><br>
@@ -202,7 +195,7 @@ def showing_geneSeq(whole_sequence):
 #  --------------------- 5 ---------------------------------
 def finding_chromosome(ID):
     ENDPOINT = "/sequence/id/"
-    response = connecting(ENDPOINT + ID)
+    response = connecting(ENDPOINT + ID + "?")
     information = response['desc']
     chromosome = information.split(":")[2]
     return chromosome
@@ -220,8 +213,6 @@ def showing_geneInfo(whole_sequence, id_seq, chromosome):
     <head> 
     <body style="background-color: #D8BFD8;">
         <h1>DATA ASKED:</h1>
-        <h4> Warning: the gene you introduce must be in the ensembl database
-            else, an error will be shown</h4>
         <p> The sequence's start is: {whole_sequence[0:10]}...</p><br>
         <p> The sequence's end is: ...{whole_sequence[-10:]} </p><br>
         <p> The sequence's length is:{len(whole_sequence)} </p><br>
@@ -260,8 +251,6 @@ def showing_geneCalc(statistics):
     <head> 
     <body style="background-color: #F0F8FF;">
         <h1>DATA ASKED:</h1>
-        <h4> Warning: the gene you introduce must be in the ensembl database
-            else, an error will be shown</h4>
         <p> The calculations are:<br><br>{statistics} </p><br>
 <br><br>
             <a href="http://127.0.0.1:8080/">[Main page]</a>
@@ -273,7 +262,14 @@ def showing_geneCalc(statistics):
 
 
 #  --------------------- 7 ---------------------------------
-def showing_geneList(cut_sequence):
+def gene_dictionary(gene):
+    list1 = []
+    for dictionary in gene:
+        list1.append(dictionary['external_name'])
+    return list1
+
+
+def showing_geneList(genes):
     contents = f""" 
     <!DOCTYPE html>
     <html lang="en">
@@ -283,10 +279,8 @@ def showing_geneList(cut_sequence):
     <head> 
     <body style="background-color: #E6E6FA;">
         <h1>DATA ASKED:</h1>
-        <h4> Warning: the chromosome you introduce must be in the ensembl database
-            else, an error will be shown</h4>
-        <p> The sequence is:  </p>
-        <textarea readonly id="GENE" rows="10" cols="70">{cut_sequence} </textarea>
+        <p> The genes are:  </p>
+        <p>{stringlist(genes)} <p>
 <br><br>
             <a href="http://127.0.0.1:8080/">[Main page]</a>
 
@@ -318,9 +312,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 error_code = 200
             elif resource == "/listSpecies":
                 ENDPOINT = "/info/species"
-                data = listSpecies(ENDPOINT)
+                data = listSpecies(ENDPOINT + "?")
                 if "limit" in self.path:
-                    number = splitting(self.path, 'limit=', 1)
+                    number1 = splitting(self.path, 'limit=', 1)
+                    if number1 !=  "":
+                        number = number1
+                    else:
+                        number = len(data)
                     contents = showing_listSpecies(data[0:int(number)], data)
                 else:
                     contents = showing_listSpecies(data, data)
@@ -329,7 +327,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             elif resource == '/karyotype':
                 species = splitting(self.path, 'specie=', 1)
                 ENDPOINT = "/info/assembly/" + species
-                data = karyotype(ENDPOINT)
+                data = karyotype(ENDPOINT + "?")
                 contents = showing_karyotype(data)
                 content_type = 'text/html'
                 error_code = 200
@@ -337,7 +335,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 complete = splitting(self.path, 'specie=', 1)
                 species = splitting(complete, "&chromo=", 0)
                 chromosome = splitting(complete, "&chromo=", 1)
-                ENDPOINT = "/info/assembly/" + species
+                ENDPOINT = "/info/assembly/" + species + "?"
                 data = chromosome_length(ENDPOINT, chromosome)
                 contents = showing_chromolength(data)
                 content_type = 'text/html'
@@ -369,17 +367,17 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 end = splitting(cutting, "&end=", 1)
                 cutting2 = splitting(cutting, "&end=", 0)
                 start = splitting(cutting2, "&start=", 1)
-                ENDPOINT1 = "/sequence/region/human/" + chromosome + ":" + start + ":" + end
+                ENDPOINT1 = "/overlap/region/human/" + chromosome + ":" + start + "-" + end + "?feature=gene;"
                 response = connecting(ENDPOINT1)
-                cut_list = response['seq']
-                contents = showing_geneList(cut_list)
+                genes = gene_dictionary(response)
+                contents = showing_geneList(genes)
                 content_type = 'text/html'
                 error_code = 200
             else:
                 contents = Path('Error-medium.html').read_text()
                 content_type = 'text/html'
                 error_code = 404
-        except (ValueError, KeyError, IndexError):
+        except (ValueError, KeyError, IndexError, TypeError):
             contents = Path('Error-medium.html').read_text()
             content_type = 'text/html'
             error_code = 404

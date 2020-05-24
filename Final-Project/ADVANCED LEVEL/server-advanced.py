@@ -314,6 +314,7 @@ def HTMLdoc():
          """
     return doc
 
+
 # -- Class with our Handler. It is a called derived from BaseHTTPRequestHandler
 # --  Our class inherits all his methods and properties
 class TestHandler(http.server.BaseHTTPRequestHandler):
@@ -332,24 +333,29 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         else:
             link = self.path
             values = "0"
-        e = (ValueError, KeyError, IndexError, TypeError, SyntaxError)
+        print(link)
+        print(self.path)
         try:
             if resource == "/":
                 contents = Path('index-advanced.html').read_text()
             elif resource == "/listSpecies":
                 ENDPOINT = "/info/species?"
                 data = listSpecies(ENDPOINT)
-                if "limit" in link:
-                    number = splitting(link, 'limit=', 1)
+                if "limit=" in link:
+                    number1 = splitting(link, 'limit=', 1)
+                    if number1 != "":
+                        number = number1
+                    else:
+                        number = len(data)
                     if values == "1":
                         contents = dict_listSpecies(data[0:int(number)], data, number)
                     else:
                         contents = HTMLdoc() + showing_listSpecies(data[0:int(number)], data, number)
                 else:
                     if values == "1":
-                        contents = dict_listSpecies(data, data, data)
+                        contents = dict_listSpecies(data, data, len(data))
                     else:
-                        contents = HTMLdoc() + showing_listSpecies(data, data, data)
+                        contents = HTMLdoc() + showing_listSpecies(data, data, len(data))
             elif resource == '/karyotype':
                 species = splitting(link, 'specie=', 1)
                 ENDPOINT = "/info/assembly/" + species + "?"
@@ -410,7 +416,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             else:
                 contents = Path('Error-advanced.html').read_text()
-        except (ValueError, KeyError, IndexError, TypeError,SyntaxError):
+        except (ValueError, KeyError, IndexError, TypeError, SyntaxError):
             contents = Path('Error-advanced.html').read_text()
 
         list_resources = ["/", "/listSpecies", "/karyotype", "/chromosomeLength",
