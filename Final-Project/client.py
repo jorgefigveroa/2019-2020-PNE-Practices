@@ -24,11 +24,9 @@ r8 = "/geneList?chromo=1&start=0&end=30000&json=0"
 r9 = "/geneList?chromo=&start=&end=&json=1"
 r10 = "/page_doesnt_exist&json=1"
 r11 = "/listSpecies?limit=10"
+r12 = "/listSpecies"
 
-# -- Last one
-r12 = "/listSpecies&json=1"
-
-requests = [r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12]
+requests = [r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11,r12]
 
 count = 0
 for request1 in requests:

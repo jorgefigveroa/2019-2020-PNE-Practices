@@ -1,0 +1,360 @@
+Test report example(BASIC)
+====================
+
+---> main endpoint
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8080/
+
+* output:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MAIN PAGE</title>
+</head>
+<body style="background-color: lightyellow;">
+    <h1>Browsing Human and Vertebrates genome</h1>
+    <h2>BASIC Level Species</h2>
+    <p> 1) List of species in the genome database:</p>
+    <form action="listSpecies" method="get">
+      Limit: <input type="text" name="limit">
+        <br><br>
+        <input type="submit" value="Send">
+      <br><br>
+</form>
+    <p>2) Information about the karyotype:</p>
+    <form action="karyotype" method="get">
+      Select the species: <input type="text" name="specie">
+        <br><br>
+        <input type="submit" value="Send">
+      <br><br>
+</form>
+    <p>3) Chromosome length: </p>
+    <form action="chromosomeLength" method="get">
+      Select the species: <input type="text" name="specie">
+        <br><br>
+        Select the chromosome: <input type="text" name="chromo">
+        <br><br>
+        <input type="submit" value="Send">
+      <br><br>
+</form>
+</body>
+</html>
+
+
+---> listSpecies endpoint
+
+* TEST 2:
+
+* Input:
+
+http://127.0.0.1:8080/listSpecies?limit=2
+
+* output:
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> LIST OF SPECIES </title>
+    <head>
+    <body style="background-color: lightgreen;">
+        <h1>DATA ASKED:</h1>
+        <p> The total number of species in the ensembl is: 286 </p>
+        <p> The limit you have selected is: 2 </p>
+        <p>The list of the species is: <br>  &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Abingdon island giant tortoise<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 African ostrich<br></p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
+
+* TEST 3:
+
+* Input:
+
+http://127.0.0.1:8080/listSpecies?limit=
+
+* output:
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> LIST OF SPECIES </title>
+    <head>
+    <body style="background-color: lightgreen;">
+        <h1>DATA ASKED:</h1>
+        <p> The total number of species in the ensembl is: 286 </p>
+        <p> The limit you have selected is: 286 </p>
+        <p>The list of the species is: <br>  &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Abingdon island giant tortoise<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 African ostrich<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Agassiz's desert tortoise<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Algerian mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Alpaca<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Alpine marmot<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Amazon molly<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American beaver<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American bison<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American black bear<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American mink<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Angola colobus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Anole lizard<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Arabian camel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Arctic ground squirrel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Argentine black and white tegu<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Armadillo<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Asian bonytongue<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Asiatic black bear<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Atlantic herring<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Atlantic salmon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Australian saltwater crocodile<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ballan wrasse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Barramundi perch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Beluga whale<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Bengalese finch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Bicolor damselfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Black snub-nosed monkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blind barbel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blue tilapia<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blue tit<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blue-crowned manakin<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blue-ringed sea krait<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blunt-snouted clingfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Bolivian squirrel monkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Bonobo<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Brazilian guinea pig<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Brown trout<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Budgerigar<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Burrowing owl<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Burton's mouthbrooder<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Bushbaby<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 C.intestinalis<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 C.savignyi<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Caenorhabditis elegans<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Canada lynx<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Capuchin<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Cat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Central bearded dragon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chacoan peccary<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Channel bull blenny<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Channel catfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chicken<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chilean tinamou<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chimpanzee<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinese hamster CHOK1GS<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinese hamster CriGri<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinese hamster PICR<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinese medaka<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinese softshell turtle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinook salmon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Climbing perch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Clown anemonefish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Cod<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Coelacanth<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common canary<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common carp<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common carp german mirror<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common carp hebao red<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common carp huanghe<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common snapping turtle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common wall lizard<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common wombat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Coquerel's sifaka<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Cow<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Crab-eating macaque<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Damara mole rat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dark-eyed junco<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Daurian ground squirrel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Degu<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Denticle herring<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dingo<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dog<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dog - Basenji<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dog - Great Dane<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dolphin<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Domestic yak<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Donkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Drill<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Drosophila melanogaster<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Duck<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Eastern brown snake<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Eastern happy<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Electric eel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Elephant<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Elephant shark<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Emu<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Eurasian sparrowhawk<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 European seabass<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ferret<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Flycatcher<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Fugu<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Gelada<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Gibbon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Gilthead seabream<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Goat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden Hamster<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden eagle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden pheasant<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden snub-nosed monkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden-collared manakin<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden-line barbel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Goldfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Goodes thornscrub tortoise<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Gorilla<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Gouldian finch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Great Tit<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Great spotted kiwi<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Greater amberjack<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Greater bamboo lemur<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Greater horseshoe bat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Guinea Pig<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Guppy<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Hagfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Hedgehog<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Helmeted guineafowl<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Horned golden-line barbel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Horse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Huchen<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Human<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Hybrid - Bos Indicus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Hybrid - Bos Taurus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Hyrax<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Indian glassy fish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Indian medaka<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Indian peafowl<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Japanese medaka HNI<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Japanese medaka HSOK<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Japanese medaka HdrR<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Japanese quail<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Javanese ricefish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Jewelled blenny<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Kakapo<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Kangaroo rat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Koala<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Komodo dragon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Lamprey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Large yellow croaker<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Leopard<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Lesser Egyptian jerboa<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Lesser hedgehog tenrec<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Lion<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Little spotted kiwi<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Live sharksucker<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Long-tailed chinchilla<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Lyretail cichlid<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ma's night monkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Macaque<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mainland tiger snake<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Makobe Island cichlid<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mallard<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mangrove rivulus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Marmoset<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Medium ground-finch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Meerkat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Megabat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mexican tetra<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Microbat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Midas cichlid<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mongolian gerbil<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Monterrey platyfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse 129S1/SvImJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse A/J<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse AKR/J<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse BALB/cJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse C3H/HeJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse C57BL/6NJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse CAST/EiJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse CBA/J<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse DBA/2J<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse FVB/NJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse LP/J<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse Lemur<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse NOD/ShiLtJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse NZO/HlLtJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse PWK/PhJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse WSB/EiJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mummichog<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Naked mole-rat female<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Naked mole-rat male<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Nile tilapia<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Northern American deer mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Northern pike<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ocean sunfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Okarito brown kiwi<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Olive baboon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Opossum<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Orange clownfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Orangutan<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Orbiculate cardinalfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pachon cavefish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Painted turtle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Panda<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Paramormyrops kingsleyae<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Periophthalmus magnuspinnatus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Bamei<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Berkshire<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Hampshire<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Jinhua<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Landrace<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Largewhite<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Meishan<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Pietrain<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Rongchang<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Tibetan<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Wuzhishan<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig USMARC<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig-tailed macaque<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pika<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pinecone soldierfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pink-footed goose<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Platyfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Platypus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Polar bear<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Prairie vole<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Rabbit<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Rainbow trout<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Rat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Red fox<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Red-bellied piranha<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Reedfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ring-necked pheasant<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Round goby<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ruff<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Rufous-capped babbler<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ryukyu mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Saccharomyces cerevisiae<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sailfin molly<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sheep<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sheepshead minnow<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Shortfin molly<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Shrew<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Shrew mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Siamese fighting fish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Siberian musk deer<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Silver-eye<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sloth<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Small tree finch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sooty mangabey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sperm whale<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Spiny chromis<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Spoon-billed sandpiper<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Spotted gar<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Squirrel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Steppe mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Stickleback<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Swamp eel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Swan goose<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tarsier<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tasmanian devil<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tetraodon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Three-toed box turtle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tiger<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tiger tail seahorse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tongue sole<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tree Shrew<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tropical clawed frog<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tuatara<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Turbot<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Turkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ugandan red Colobus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Upper Galilee mountains blind mole rat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Vervet-AGM<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Wallaby<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 West African mud turtle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Western mosquitofish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 White-throated sparrow<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Wild yak<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Yellow-billed parrot<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Yellowtail amberjack<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Zebra finch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Zebra mbuna<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Zebrafish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Zig-zag eel<br></p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
+
+* TEST 4:
+
+* Input:
+
+http://127.0.0.1:8080/listSpecies
+
+* output:
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> LIST OF SPECIES </title>
+    <head>
+    <body style="background-color: lightgreen;">
+        <h1>DATA ASKED:</h1>
+        <p> The total number of species in the ensembl is: 286 </p>
+        <p> The limit you have selected is: 286 </p>
+        <p>The list of the species is: <br>  &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Abingdon island giant tortoise<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 African ostrich<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Agassiz's desert tortoise<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Algerian mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Alpaca<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Alpine marmot<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Amazon molly<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American beaver<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American bison<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American black bear<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American mink<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Angola colobus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Anole lizard<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Arabian camel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Arctic ground squirrel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Argentine black and white tegu<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Armadillo<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Asian bonytongue<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Asiatic black bear<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Atlantic herring<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Atlantic salmon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Australian saltwater crocodile<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ballan wrasse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Barramundi perch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Beluga whale<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Bengalese finch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Bicolor damselfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Black snub-nosed monkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blind barbel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blue tilapia<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blue tit<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blue-crowned manakin<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blue-ringed sea krait<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Blunt-snouted clingfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Bolivian squirrel monkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Bonobo<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Brazilian guinea pig<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Brown trout<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Budgerigar<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Burrowing owl<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Burton's mouthbrooder<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Bushbaby<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 C.intestinalis<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 C.savignyi<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Caenorhabditis elegans<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Canada lynx<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Capuchin<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Cat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Central bearded dragon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chacoan peccary<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Channel bull blenny<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Channel catfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chicken<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chilean tinamou<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chimpanzee<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinese hamster CHOK1GS<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinese hamster CriGri<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinese hamster PICR<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinese medaka<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinese softshell turtle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Chinook salmon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Climbing perch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Clown anemonefish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Cod<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Coelacanth<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common canary<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common carp<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common carp german mirror<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common carp hebao red<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common carp huanghe<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common snapping turtle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common wall lizard<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Common wombat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Coquerel's sifaka<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Cow<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Crab-eating macaque<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Damara mole rat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dark-eyed junco<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Daurian ground squirrel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Degu<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Denticle herring<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dingo<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dog<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dog - Basenji<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dog - Great Dane<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Dolphin<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Domestic yak<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Donkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Drill<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Drosophila melanogaster<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Duck<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Eastern brown snake<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Eastern happy<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Electric eel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Elephant<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Elephant shark<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Emu<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Eurasian sparrowhawk<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 European seabass<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ferret<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Flycatcher<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Fugu<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Gelada<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Gibbon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Gilthead seabream<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Goat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden Hamster<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden eagle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden pheasant<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden snub-nosed monkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden-collared manakin<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Golden-line barbel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Goldfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Goodes thornscrub tortoise<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Gorilla<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Gouldian finch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Great Tit<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Great spotted kiwi<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Greater amberjack<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Greater bamboo lemur<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Greater horseshoe bat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Guinea Pig<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Guppy<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Hagfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Hedgehog<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Helmeted guineafowl<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Horned golden-line barbel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Horse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Huchen<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Human<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Hybrid - Bos Indicus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Hybrid - Bos Taurus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Hyrax<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Indian glassy fish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Indian medaka<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Indian peafowl<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Japanese medaka HNI<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Japanese medaka HSOK<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Japanese medaka HdrR<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Japanese quail<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Javanese ricefish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Jewelled blenny<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Kakapo<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Kangaroo rat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Koala<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Komodo dragon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Lamprey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Large yellow croaker<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Leopard<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Lesser Egyptian jerboa<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Lesser hedgehog tenrec<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Lion<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Little spotted kiwi<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Live sharksucker<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Long-tailed chinchilla<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Lyretail cichlid<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ma's night monkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Macaque<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mainland tiger snake<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Makobe Island cichlid<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mallard<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mangrove rivulus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Marmoset<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Medium ground-finch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Meerkat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Megabat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mexican tetra<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Microbat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Midas cichlid<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mongolian gerbil<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Monterrey platyfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse 129S1/SvImJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse A/J<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse AKR/J<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse BALB/cJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse C3H/HeJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse C57BL/6NJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse CAST/EiJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse CBA/J<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse DBA/2J<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse FVB/NJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse LP/J<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse Lemur<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse NOD/ShiLtJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse NZO/HlLtJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse PWK/PhJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mouse WSB/EiJ<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Mummichog<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Naked mole-rat female<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Naked mole-rat male<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Nile tilapia<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Northern American deer mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Northern pike<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ocean sunfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Okarito brown kiwi<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Olive baboon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Opossum<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Orange clownfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Orangutan<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Orbiculate cardinalfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pachon cavefish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Painted turtle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Panda<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Paramormyrops kingsleyae<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Periophthalmus magnuspinnatus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Bamei<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Berkshire<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Hampshire<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Jinhua<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Landrace<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Largewhite<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Meishan<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Pietrain<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Rongchang<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Tibetan<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig - Wuzhishan<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig USMARC<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pig-tailed macaque<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pika<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pinecone soldierfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Pink-footed goose<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Platyfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Platypus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Polar bear<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Prairie vole<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Rabbit<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Rainbow trout<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Rat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Red fox<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Red-bellied piranha<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Reedfish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ring-necked pheasant<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Round goby<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ruff<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Rufous-capped babbler<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ryukyu mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Saccharomyces cerevisiae<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sailfin molly<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sheep<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sheepshead minnow<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Shortfin molly<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Shrew<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Shrew mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Siamese fighting fish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Siberian musk deer<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Silver-eye<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sloth<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Small tree finch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sooty mangabey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Sperm whale<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Spiny chromis<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Spoon-billed sandpiper<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Spotted gar<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Squirrel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Steppe mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Stickleback<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Swamp eel<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Swan goose<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tarsier<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tasmanian devil<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tetraodon<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Three-toed box turtle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tiger<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tiger tail seahorse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tongue sole<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tree Shrew<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tropical clawed frog<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Tuatara<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Turbot<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Turkey<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Ugandan red Colobus<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Upper Galilee mountains blind mole rat<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Vervet-AGM<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Wallaby<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 West African mud turtle<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Western mosquitofish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 White-throated sparrow<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Wild yak<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Yellow-billed parrot<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Yellowtail amberjack<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Zebra finch<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Zebra mbuna<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Zebrafish<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Zig-zag eel<br></p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
+
+* TEST 5:
+
+* Input:
+
+http://127.0.0.1:8080/listSpecies?limit=10
+
+* output:
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> LIST OF SPECIES </title>
+    <head>
+    <body style="background-color: lightgreen;">
+        <h1>DATA ASKED:</h1>
+        <p> The total number of species in the ensembl is: 286 </p>
+        <p> The limit you have selected is: 10 </p>
+        <p>The list of the species is: <br>  &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Abingdon island giant tortoise<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 African ostrich<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Agassiz's desert tortoise<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Algerian mouse<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Alpaca<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Alpine marmot<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Amazon molly<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American beaver<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American bison<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 American black bear<br></p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
+
+---> karyotype endpoint
+
+
+* output:
+
+* TEST 6:
+
+* Input:
+
+http://127.0.0.1:8080/karyotype?specie=chicken
+
+* output:
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> KARYOTYPE </title>
+    <head>
+    <body style="background-color: lightblue;">
+        <h1>DATA ASKED:</h1>
+        <p> The names of the chromosomes are: <br>  &nbsp;&nbsp;&nbsp;&nbsp; &#9679 MT<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 W<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 Z<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 1<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 2<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 3<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 4<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 5<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 6<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 7<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 8<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 9<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 10<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 11<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 12<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 13<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 14<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 15<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 16<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 17<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 18<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 19<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 20<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 21<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 22<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 23<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 24<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 25<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 26<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 27<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 28<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 30<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 31<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 32<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 33<br> </p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
+
+* TEST 7:
+
+* Input:
+
+http://127.0.0.1:8080/karyotype?specie=coronavirus
+
+* output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color:pink;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server... <br><br> If you are here it's because the data you have entered
+        does not exist in the ensembl database or you typed something wrong. <br><br> Sorry! <br><br> Here's a picture of an otter :) </p>
+        <img src="https://live.staticflickr.com/2132/2112207670_a603821171_b.jpg" alt="Otter :)" width="512" height="342">
+        <br><br>
+      <a href="http://127.0.0.1:8080/">Main page</a>
+        <br> <br> <br> <br>
+      <a href="https://youtu.be/dQw4w9WgXcQ?autoplay=1">click here if you want to hear a secret...</a>
+      </body>
+    </html>
+
+
+* TEST 8:
+
+* Input:
+
+http://127.0.0.1:8080/karyotype?specie=
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color:pink;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server... <br><br> If you are here it's because the data you have entered
+        does not exist in the ensembl database or you typed something wrong. <br><br> Sorry! <br><br> Here's a picture of an otter :) </p>
+        <img src="https://live.staticflickr.com/2132/2112207670_a603821171_b.jpg" alt="Otter :)" width="512" height="342">
+        <br><br>
+      <a href="http://127.0.0.1:8080/">Main page</a>
+        <br> <br> <br> <br>
+      <a href="https://youtu.be/dQw4w9WgXcQ?autoplay=1">click here if you want to hear a secret...</a>
+      </body>
+    </html>
+
+* TEST 9:
+
+* Input:
+
+http://127.0.0.1:8080/karyotype?specie=dog
+
+* output:
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> KARYOTYPE </title>
+    <head>
+    <body style="background-color: lightblue;">
+        <h1>DATA ASKED:</h1>
+        <p> The names of the chromosomes are: <br>  &nbsp;&nbsp;&nbsp;&nbsp; &#9679 1<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 2<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 3<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 4<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 5<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 6<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 7<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 8<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 9<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 10<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 11<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 12<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 13<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 14<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 15<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 16<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 17<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 18<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 19<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 20<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 21<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 22<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 23<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 24<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 25<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 26<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 27<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 28<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 29<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 30<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 31<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 32<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 33<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 34<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 35<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 36<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 37<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 38<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 X<br> &nbsp;&nbsp;&nbsp;&nbsp; &#9679 MT<br> </p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
+
+---> CHROMOSOME LENGTH ENDPOINT
+
+* TEST 10:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=&chromo=
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color:pink;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server... <br><br> If you are here it's because the data you have entered
+        does not exist in the ensembl database or you typed something wrong. <br><br> Sorry! <br><br> Here's a picture of an otter :) </p>
+        <img src="https://live.staticflickr.com/2132/2112207670_a603821171_b.jpg" alt="Otter :)" width="512" height="342">
+        <br><br>
+      <a href="http://127.0.0.1:8080/">Main page</a>
+        <br> <br> <br> <br>
+      <a href="https://youtu.be/dQw4w9WgXcQ?autoplay=1">click here if you want to hear a secret...</a>
+      </body>
+    </html>
+
+* TEST 11:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=dog&chromo=4
+
+
+* output:
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> CHROMOSOME LENGTH </title>
+    <head>
+    <body style="background-color: #FFA07A;">
+        <h1>DATA ASKED:</h1>
+        <p> The length of the chromosome is: 88276631 </p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
+
+* TEST 12:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=dog&chromo=
+
+* output:
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> CHROMOSOME LENGTH </title>
+    <head>
+    <body style="background-color: #FFA07A;">
+        <h1>DATA ASKED:</h1>
+        <p> The length of the chromosome is: None </p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
+
+* TEST 13:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=&chromo=13
+
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color:pink;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server... <br><br> If you are here it's because the data you have entered
+        does not exist in the ensembl database or you typed something wrong. <br><br> Sorry! <br><br> Here's a picture of an otter :) </p>
+        <img src="https://live.staticflickr.com/2132/2112207670_a603821171_b.jpg" alt="Otter :)" width="512" height="342">
+        <br><br>
+      <a href="http://127.0.0.1:8080/">Main page</a>
+        <br> <br> <br> <br>
+      <a href="https://youtu.be/dQw4w9WgXcQ?autoplay=1">click here if you want to hear a secret...</a>
+      </body>
+    </html>
+
+* TEST 14:
+
+* Input:
+
+http://127.0.0.1:8080/chromosomeLength?specie=human&chromo=Y
+
+
+* output:
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset= "utf-8">
+        <title> CHROMOSOME LENGTH </title>
+    <head>
+    <body style="background-color: #FFA07A;">
+        <h1>DATA ASKED:</h1>
+        <p> The length of the chromosome is: 57227415 </p>
+            <a href="http://127.0.0.1:8080/">[Main page]</a>
+    </body>
+    </html>
+
+
+
